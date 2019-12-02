@@ -1,4 +1,4 @@
-#!/usr/bin/perl -T
+#!/usr/bin/perl
 # by Matija Nalis <mnalis-perl@voyager.hr>, Apache 2.0 license, started 2019-12-02
 #
 # converts android WiFi passwords from old wpa_supplicant.conf to newer WifiConfigStore.xml
@@ -12,8 +12,7 @@ use Data::Dumper;
 use POSIX qw(strftime);
 
 my $DEBUG = $ENV{DEBUG} || 0;
-my $IGN_ERR = $ENV{IGN_ERR} || 0;
-my $CreationUID = '1000';	# FIXME user configurable? or read from id_str (but it can be "-1" there!) or fix to "0" ?
+my $CreationUID = $ENV{FORCEUID} || '1000';	# FIXME user configurable? or read from id_str (but it can be "-1" there!) or fix to "0" ?
 
 $| = 1;
 

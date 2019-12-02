@@ -18,6 +18,6 @@ This perl script reads old wpa_supplicant.conf on STDIN, and outputs new WifiCon
 * set uid to 1000 or 0 ? or -1 ?
 * parse id_str (url_decode, JSON) for creatorUid & configKey ?
 * where to put "priority" and "bssid" from wpa_supplicant.conf ? 
-* wpa_supplicant is disabled always "1" ?
+* wpa_supplicant.conf: is "disabled" always "1" ?
 * warn for all unhandled key/value pairs (or even better, handle them correctly)
 * FIXMEs in code
