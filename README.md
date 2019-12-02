@@ -16,11 +16,13 @@ so I don't have to remember and type them all again.
   or in whatever location it is in your device (maybe /data/wifi/bcm_supp.conf or /data/misc/wifi/wpa.conf)
 * ./convert_wifi.pl < wpa_supplicant.conf  > WifiConfigStore.xml
   and check any warnings / error outputed on the screen
+* disable WiFi on your phone
 * adb push WifiConfigStore.xml /data/misc/wifi/WifiConfigStore.xml
 * adb shell chmod 600 /data/misc/wifi/WifiConfigStore.xml
 * adb shell chown system:system /data/misc/wifi/WifiConfigStore.xml
 * adb shell rm /data/misc/wifi/WifiConfigStore.xml.encrypted-checksum
 * reboot the phone
+* enable WiFi on your phone
 
 
 
