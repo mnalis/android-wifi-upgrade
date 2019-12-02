@@ -9,6 +9,8 @@ use strict;
 use autodie;
 use Data::Dumper;
 
+use POSIX qw(strftime);
+
 my $DEBUG = $ENV{DEBUG} || 0;
 my $IGN_ERR = $ENV{IGN_ERR} || 0;
 my $CreationUID = '1000';	# FIXME user configurable? or read from id_str (but it can be "-1" there!) or fix to "0" ?
@@ -51,7 +53,7 @@ sub add_xml() {
 	
 	if (defined $CUR{auth_alg}) { warn "probably don't know how to correctly handle auth_alg=$CUR{auth_alg} in SSID $SSID" };
 
-	my $CreationTime = 'time=12-01 00:00:00.000';	# FIXME example: time=12-02 01:47:38.625
+	my $CreationTime = strftime "time=%m-%d %H:%M:%S.000", localtime;	# FIXME example: time=12-02 01:47:38.625 -- year is lost??
 
 	my $PSK_LINE = '<null name="PreSharedKey"/>';
 	my $AllowedKeyMgmt = '01';	# seems to be 01 for null PSK, 02 otherwise?
