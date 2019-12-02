@@ -11,6 +11,8 @@ use Data::Dumper;
 
 my $DEBUG = $ENV{DEBUG} || 0;
 my $IGN_ERR = $ENV{IGN_ERR} || 0;
+my $CreationUID = '1000';	# FIXME user configurable? or read from id_str (but it can be "-1" there!) or fix to "0" ?
+
 $| = 1;
 
 sub dbg($$) {
@@ -40,29 +42,32 @@ sub quote_xml($) {
 
 # constructs one network entry in WifiConfigStore.xml
 sub add_xml() {
+	my $SSID = $CUR{ssid}; 
+	if (!defined $SSID) { return warn "Skipping - no SSID?! in " . Dumper(\%CUR); }
+	
+	my $key_mgmt = $CUR{key_mgmt} || ''; warn "no key_mgmt for SSID $SSID" if not defined $CUR{key_mgmt};
+	if ($CUR{key_mgmt} !~ /^NONE|WPA-PSK$/) { warn "unknown key_mgmt=$key_mgmt for SSID $SSID" };
+	$key_mgmt =~ tr/-/_/;
+	
+	if (defined $CUR{auth_alg}) { warn "probably don't know how to correctly handle auth_alg=$CUR{auth_alg} in SSID $SSID" };
 
-	if ($CUR{disabled} eq 1) {
-		warn "ignoring disabled network $CUR{ssid}";
-		return;
-	}
-
-	print q{
-        <Network>
-            <WifiConfiguration>};
-
-	my $ConfigKey = quote_xml 'FIXME NETNAME_WPA_PSK';
-	my $SSID = quote_xml '"FIXME_SSID_WITH_QUOTES"';
 	my $CreationTime = 'time=12-01 00:00:00.000';	# FIXME example: time=12-02 01:47:38.625
-	my $CreationUID = '1000';	# FIXME make it user configurable?
-
 
 	my $PSK_LINE = '<null name="PreSharedKey"/>';
-	my $AllowedKeyMgmt = '01';	# 01 for null PSK, 02 otherwise?
+	my $AllowedKeyMgmt = '01';	# seems to be 01 for null PSK, 02 otherwise?
 	if ($CUR{key_mgmt} ne 'NONE') {
-		my $PreSharedKey = quote_xml '"FIXME_UNDEF_OR_QUOTED_PSK"';
+		if (!defined $CUR{psk}) { return warn "Skipping - no PSK for SSID $SSID" };
+		my $PreSharedKey = quote_xml $CUR{psk}; 
+		$AllowedKeyMgmt = '02';
+		$PSK_LINE = '<string name="PreSharedKey">' . $PreSharedKey . '</string>';
 	}
 	
-	print qq{
+	$SSID = quote_xml $SSID;
+	my $ConfigKey = "${SSID}$key_mgmt"; 
+
+	# output main config block with all variables filled-in
+	print qq{        <Network>
+            <WifiConfiguration>
                 <string name="ConfigKey">$ConfigKey</string>
                 <string name="SSID">$SSID</string>
                 <null name="BSSID"/>
@@ -100,7 +105,18 @@ sub add_xml() {
                 <string name="RandomizedMacAddress">02:00:00:00:00:00</string>
 };
 	
-	die;
+	#die "FIXME TEST KRAJ";
+
+# FIXME original looks like this:
+#network={
+#        ssid="SomeNet name"
+#        bssid=a4:1d:6b:4b:3e:2f
+#        psk="SomePassword"
+#        key_mgmt=WPA-PSK
+#        priority=201
+#        disabled=1
+#        id_str="%7B%22creatorUid%22%3A%22-1%22%2C%22configKey%22%3A%22%5C%22SomeNet+name%5C%22WPA_PSK%22%7D"
+#}
 	
 	print q{            </WifiConfiguration>
             <NetworkStatus>

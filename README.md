@@ -15,4 +15,9 @@ This perl script reads old wpa_supplicant.conf on STDIN, and outputs new WifiCon
 ## TODO
 * Never write XML by hand as I do here!  It will seem to work in most cases, and then break badly on some non-escaped value or similar.
 * only config I implemented currently are open networks (no PSK) and WPA2 networks (with ASCII PSK). Maybe support other (WEP, WPA1, EAP-xxx thingies) ?
+* set uid to 1000 or 0 ? or -1 ?
+* parse id_str (url_decode, JSON) for creatorUid & configKey ?
+* where to put "priority" and "bssid" from wpa_supplicant.conf ? 
+* wpa_supplicant is disabled always "1" ?
+* warn for all unhandled key/value pairs (or even better, handle them correctly)
 * FIXMEs in code
