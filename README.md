@@ -15,13 +15,16 @@ so I don't have to remember and type them all again.
 ## Usage
 
 * `adb root`
+
   (make sure you have first set permissions in developer settings root ADB)
 
 * `adb pull  /data/misc/wifi/wpa_supplicant.conf`
-  or in whatever location it is in your device (maybe */data/wifi/bcm_supp.conf* or */data/misc/wifi/wpa.conf*)
+
+   (or in whatever location it is in your device - maybe */data/wifi/bcm_supp.conf* or */data/misc/wifi/wpa.conf*)
 
 * `./convert_wifi.pl < wpa_supplicant.conf  > WifiConfigStore.xml`
-  and check any warnings / error outputed on the screen
+
+  (and check any warnings / error outputed on the screen)
 
 * disable WiFi on your phone
 
