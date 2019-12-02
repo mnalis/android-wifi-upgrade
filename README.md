@@ -10,6 +10,20 @@ This script is a quick hack to convert (most of the) passwords to new format
 so I don't have to remember and type them all again.
 
 ## Usage
+* adb root
+  make sure you have first set permissions in developer settings root ADB
+* adb pull  /data/misc/wifi/wpa_supplicant.conf
+  or in whatever location it is in your device (maybe /data/wifi/bcm_supp.conf or /data/misc/wifi/wpa.conf)
+* ./convert_wifi.pl < wpa_supplicant.conf  > WifiConfigStore.xml
+  and check any warnings / error outputed on the screen
+* adb push WifiConfigStore.xml /data/misc/wifi/WifiConfigStore.xml
+* adb shell chmod 600 /data/misc/wifi/WifiConfigStore.xml
+* adb shell chown system:system /data/misc/wifi/WifiConfigStore.xml
+* adb shell rm /data/misc/wifi/WifiConfigStore.xml.encrypted-checksum
+* reboot the phone
+
+
+
 This perl script reads old wpa_supplicant.conf on STDIN, and outputs new WifiConfigStore.xml to STDOUT
 
 ## TODO
