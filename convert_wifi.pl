@@ -12,6 +12,7 @@ use Data::Dumper;
 use POSIX qw(strftime);
 
 my $DEBUG = $ENV{DEBUG} || 0;
+my $IGNORE_OPEN = $ENV{IGNORE_OPEN} || 0;	# ignore open networks (without password) and do not convert them
 my $CreationUID = $ENV{FORCEUID} || '1000';	# FIXME user configurable? or read from id_str (but it can be "-1" there!) or fix to "0" ?
 
 $| = 1;
@@ -46,8 +47,10 @@ sub add_xml() {
 	if (!defined $SSID) { return warn "Skipping - no SSID?! in " . Dumper(\%CUR); }
 	
 	my $key_mgmt = $CUR{key_mgmt} || ''; warn "no key_mgmt for SSID $SSID" if not defined $CUR{key_mgmt};
-	if ($CUR{key_mgmt} !~ /^NONE|WPA-PSK$/) { warn "unknown key_mgmt=$key_mgmt for SSID $SSID" };
+	if ($CUR{key_mgmt} !~ /^NONE|WPA-PSK$/) { return warn "Skipping network with unknown key_mgmt=$key_mgmt for SSID $SSID" };
 	$key_mgmt =~ tr/-/_/;
+
+	if ($IGNORE_OPEN and $key_mgmt eq 'NONE') { return };
 	
 	if (defined $CUR{auth_alg}) { warn "probably don't know how to correctly handle auth_alg=$CUR{auth_alg} in SSID $SSID" };
 
@@ -55,7 +58,7 @@ sub add_xml() {
 
 	my $PSK_LINE = '<null name="PreSharedKey" />';
 	my $AllowedKeyMgmt = '01';	# seems to be 01 for null PSK, 02 otherwise?
-	if ($CUR{key_mgmt} ne 'NONE') {
+	if ($key_mgmt ne 'NONE') {
 		if (!defined $CUR{psk}) { return warn "Skipping - no PSK for SSID $SSID" };
 		my $PreSharedKey = quote_xml $CUR{psk}; 
 		$AllowedKeyMgmt = '02';
