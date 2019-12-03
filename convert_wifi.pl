@@ -26,9 +26,9 @@ my %CUR=();
 # header of WifiConfigStore.xml
 sub start_xml() {
 	print <<EOF
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
 <WifiConfigStoreData>
-<int name="Version" value="1"/>
+<int name="Version" value="1" />
 <NetworkList>
 EOF
 }
@@ -53,7 +53,7 @@ sub add_xml() {
 
 	my $CreationTime = strftime "time=%m-%d %H:%M:%S.000", localtime;	# FIXME example: time=12-02 01:47:38.625 -- year is lost??
 
-	my $PSK_LINE = '<null name="PreSharedKey"/>';
+	my $PSK_LINE = '<null name="PreSharedKey" />';
 	my $AllowedKeyMgmt = '01';	# seems to be 01 for null PSK, 02 otherwise?
 	if ($CUR{key_mgmt} ne 'NONE') {
 		if (!defined $CUR{psk}) { return warn "Skipping - no PSK for SSID $SSID" };
@@ -70,46 +70,46 @@ sub add_xml() {
 <WifiConfiguration>
 <string name="ConfigKey">$ConfigKey</string>
 <string name="SSID">$SSID</string>
-<null name="BSSID"/>
+<null name="BSSID" />
 $PSK_LINE
-<null name="WEPKeys"/>
-<int name="WEPTxKeyIndex" value="0"/>
-<boolean name="HiddenSSID" value="false"/>
-<boolean name="RequirePMF" value="false"/>
+<null name="WEPKeys" />
+<int name="WEPTxKeyIndex" value="0" />
+<boolean name="HiddenSSID" value="false" />
+<boolean name="RequirePMF" value="false" />
 <byte-array name="AllowedKeyMgmt" num="1">$AllowedKeyMgmt</byte-array>
 <byte-array name="AllowedProtocols" num="1">03</byte-array>
 <byte-array name="AllowedAuthAlgos" num="1">01</byte-array>
 <byte-array name="AllowedGroupCiphers" num="1">0f</byte-array>
 <byte-array name="AllowedPairwiseCiphers" num="1">06</byte-array>
-<boolean name="Shared" value="true"/>
-<int name="Status" value="2"/>
-<null name="FQDN"/>
-<null name="ProviderFriendlyName"/>
-<null name="LinkedNetworksList"/>
-<null name="DefaultGwMacAddress"/>
-<boolean name="ValidatedInternetAccess" value="false"/>
-<boolean name="NoInternetAccessExpected" value="false"/>
-<int name="UserApproved" value="0"/>
-<boolean name="MeteredHint" value="false"/>
-<int name="MeteredOverride" value="0"/>
-<boolean name="UseExternalScores" value="false"/>
-<int name="NumAssociation" value="0"/>
-<int name="CreatorUid" value="$CreationUID"/>
+<boolean name="Shared" value="true" />
+<int name="Status" value="2" />
+<null name="FQDN" />
+<null name="ProviderFriendlyName" />
+<null name="LinkedNetworksList" />
+<null name="DefaultGwMacAddress" />
+<boolean name="ValidatedInternetAccess" value="false" />
+<boolean name="NoInternetAccessExpected" value="false" />
+<int name="UserApproved" value="0" />
+<boolean name="MeteredHint" value="false" />
+<int name="MeteredOverride" value="0" />
+<boolean name="UseExternalScores" value="false" />
+<int name="NumAssociation" value="0" />
+<int name="CreatorUid" value="$CreationUID" />
 <string name="CreatorName">android.uid.system:$CreationUID</string>
 <string name="CreationTime">$CreationTime</string>
-<int name="LastUpdateUid" value="$CreationUID"/>
+<int name="LastUpdateUid" value="$CreationUID" />
 <string name="LastUpdateName">android.uid.system:$CreationUID</string>
-<int name="LastConnectUid" value="0"/>
-<boolean name="IsLegacyPasspointConfig" value="false"/>
-<long-array name="RoamingConsortiumOIs" num="0"/>
+<int name="LastConnectUid" value="0" />
+<boolean name="IsLegacyPasspointConfig" value="false" />
+<long-array name="RoamingConsortiumOIs" num="0" />
 <string name="RandomizedMacAddress">02:00:00:00:00:00</string>
 </WifiConfiguration>
 <NetworkStatus>
 <string name="SelectionStatus">NETWORK_SELECTION_ENABLED</string>
 <string name="DisableReason">NETWORK_SELECTION_ENABLE</string>
-<null name="ConnectChoice"/>
-<long name="ConnectChoiceTimeStamp" value="-1"/>
-<boolean name="HasEverConnected" value="false"/>
+<null name="ConnectChoice" />
+<long name="ConnectChoiceTimeStamp" value="-1" />
+<boolean name="HasEverConnected" value="false" />
 </NetworkStatus>
 <IpConfiguration>
 <string name="IpAssignment">DHCP</string>
@@ -138,7 +138,7 @@ sub end_xml() {
 	print <<EOF
 </NetworkList>
 <PasspointConfigData>
-<long name="ProviderIndex" value="0"/>
+<long name="ProviderIndex" value="0" />
 </PasspointConfigData>
 </WifiConfigStoreData>
 EOF
