@@ -37,21 +37,28 @@ EOF
 # FIXME: we should never do XML by hand like this. oh well.
 sub quote_xml($) {
 	my ($str) = @_;
+	$str =~ s{&}{&amp;}g;
+	$str =~ s{<}{&lt;}g;
+	$str =~ s{>}{&gt;}g;
+	$str =~ s{\'}{&apos;}g;
 	$str =~ s{\"}{&quot;}g;
 	return $str;
 }
 
+#my $cnt = 0;
 # constructs one network entry in WifiConfigStore.xml
 sub add_xml() {
 	my $SSID = $CUR{ssid}; 
-	if (!defined $SSID) { return warn "Skipping - no SSID?! in " . Dumper(\%CUR); }
-	
+	if (!defined $SSID) { return warn "Skipping - no SSID?! in " . Dumper(\%CUR) };
+	#if ($SSID !~ /^[a-zA-Z0-9_ \-\"\'\.<>&()@]+$/) { warn "Possibly problematic SSID name $SSID (FIXME needs escaping?)" };
+
 	my $key_mgmt = $CUR{key_mgmt} || ''; warn "no key_mgmt for SSID $SSID" if not defined $CUR{key_mgmt};
 	if ($CUR{key_mgmt} !~ /^NONE|WPA-PSK$/) { return warn "Skipping network with unknown key_mgmt=$key_mgmt for SSID $SSID" };
 	$key_mgmt =~ tr/-/_/;
 
 	if ($IGNORE_OPEN and $key_mgmt eq 'NONE') { return };
-	
+	#return if $DEBUG > 0 and $cnt++ < 49;	# FIXME DELME debug why it doesn't work will all 74 networks?
+
 	if (defined $CUR{auth_alg}) { warn "probably don't know how to correctly handle auth_alg=$CUR{auth_alg} in SSID $SSID" };
 
 	my $CreationTime = strftime "time=%m-%d %H:%M:%S.000", localtime;	# FIXME example: time=12-02 01:47:38.625 -- year is lost??
