@@ -113,7 +113,6 @@ $PSK_LINE
 <int name="LastConnectUid" value="0" />
 <boolean name="IsLegacyPasspointConfig" value="false" />
 <long-array name="RoamingConsortiumOIs" num="0" />
-<string name="RandomizedMacAddress">02:00:00:00:00:00</string>
 </WifiConfiguration>
 <NetworkStatus>
 <string name="SelectionStatus">NETWORK_SELECTION_ENABLED</string>
