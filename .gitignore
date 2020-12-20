@@ -1,4 +1,4 @@
 *~
 WifiConfigStore.xml*
 wpa_supplicant.conf*
-
+/selftest-rw/*
