@@ -64,7 +64,43 @@ sub add_xml() {
 	my $CreationTime = strftime "time=%m-%d %H:%M:%S.000", localtime;	# FIXME example: time=12-02 01:47:38.625 -- year is lost??
 
 	my $PSK_LINE = '<null name="PreSharedKey" />';
-	my $AllowedKeyMgmt = '01';	# seems to be 01 for null PSK, 02 otherwise?
+	my $AllowedKeyMgmt = '01';	# seems to be 01 for null PSK, 02 otherwise? See also:
+	# https://developer.android.com/reference/android/net/wifi/WifiConfiguration#SECURITY_TYPE_WAPI_PSK
+	# https://developer.android.com/reference/android/net/wifi/WifiConfiguration.KeyMgmt
+	#   0 NONE - WPA is not used; plaintext or static WEP could be used.
+	#   1 WPA_PSK - WPA pre-shared key (requires preSharedKey to be specified).
+	#   2 WPA_EAP - WPA using EAP authentication. Generally used with an external authentication server.
+	#   3 IEEE8021X - IEEE 802.1X using EAP authentication and (optionally) dynamically generated WEP keys.
+	#   8 SAE - Simultaneous Authentication of Equals
+	#   9 OWE - Opportunististic Wireless Encryption
+	#   10 SUITE_B_192
+	# https://developer.android.com/reference/android/net/wifi/WifiConfiguration.Protocol
+	#   0 WPA1 (deprecated)
+	#   1 RSN WPA2/WPA3/IEEE 802.11i
+	#   3 WAPI
+	# https://developer.android.com/reference/android/net/wifi/WifiConfiguration.AuthAlgorithm
+	#   0 OPEN - Open System authentication (required for WPA/WPA2)
+	#   1 SHARED - Shared Key authentication (requires static WEP keys)
+	#   2 LEAP/Network EAP (only used with LEAP)
+	#   3 SAE (Used only for WPA3-Personal)
+	# https://developer.android.com/reference/android/net/wifi/WifiConfiguration.GroupCipher
+	#   0 WEP40 = WEP (Wired Equivalent Privacy) with 40-bit key (original 802.11)
+	#   1 WEP104 = WEP (Wired Equivalent Privacy) with 104-bit key
+	#   2 TKIP = Temporal Key Integrity Protocol [IEEE 802.11i/D7.0]
+	#   3 CCMP = AES in Counter mode with CBC-MAC [RFC 3610, IEEE 802.11i/D7.0]
+	#   5 GCMP_256 = AES in Galois/Counter Mode
+	#   6 SMS4 = SMS4 cipher for WAPI
+	# https://developer.android.com/reference/android/net/wifi/WifiConfiguration.PairwiseCipher
+	#   0 NONE - Use only Group keys (deprecated)
+	#   1 TKIP (WPA1) - deprecated
+	#   2 CCMP - AES in Counter mode with CBC-MAC [RFC 3610, IEEE 802.11i/D7.0]
+	#   3 GCMP_256 - AES in Galois/Counter Mode
+	#   4 SMS4 cipher for WAPI
+	# https://developer.android.com/reference/android/net/wifi/WifiConfiguration.GroupMgmtCipher
+	#   0 BIP_CMAC_256 = Cipher-based Message Authentication Code 256 bits
+	#   1 BIP_GMAC_128 = Galois Message Authentication Code 128 bits
+	#   2 BIP_GMAC_256 = Galois Message Authentication Code 256 bits
+	# SuiteB Ciphers are for WPA3-Enterprise
 	if ($key_mgmt ne 'NONE') {
 		if (!defined $CUR{psk}) { return warn "Skipping - no PSK for SSID $SSID" };
 		my $PreSharedKey = quote_xml $CUR{psk}; 
