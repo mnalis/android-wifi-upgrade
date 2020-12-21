@@ -44,8 +44,10 @@ adb reboot
 * Never write XML by hand as I do here!  It will seem to work in most cases, and then break badly on some non-escaped value or similar.
 * only config I implemented currently are open networks (no PSK) and WPA2 networks (with ASCII PSK). Maybe support other (WEP, WPA1, EAP-xxx thingies) ?
 * set uid to 1000 or 0 ? or -1 ?
+** there are UIDs in "CreatorUid", "LastUpdateUid", "LastConnectUid", "CreatorName" => "android.uid.system:1000", "LastUpdateName" => "android.uid.system:1000"... are they all same or may be different?
 * parse id_str (url_decode, JSON) for creatorUid & configKey ?
-* where to put "priority" and "bssid" from wpa_supplicant.conf ? 
+* where to put "priority" and "bssid" from wpa_supplicant.conf ?
+** possibly, bssid maps to DefaultGwMacAddress ?
 * wpa_supplicant.conf: is "disabled" always "1" ?
 * warn for all unhandled key/value pairs (or even better, handle them correctly)
 * FIXMEs in code
