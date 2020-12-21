@@ -89,7 +89,12 @@ sub add_xml() {
 	#   2 LEAP/Network EAP (only used with LEAP)
 	#   3 SAE (Used only for WPA3-Personal)
 	if (defined $CUR{auth_alg}) {
-		warn "probably don't know how to correctly handle auth_alg=$CUR{auth_alg} in SSID $SSID"
+		$AllowedAuthAlgos = 0;
+		if ($CUR{auth_alg} =~ m/OPEN/)   { $AllowedAuthAlgos |= 1 ; }
+		if ($CUR{auth_alg} =~ m/SHARED/) { $AllowedAuthAlgos |= 1 << 1 ; }
+		if ($CUR{auth_alg} =~ m/LEAP/)   { $AllowedAuthAlgos |= 1 << 2 ; }
+		if ($AllowedAuthAlgos eq 0) { warn "probably don't know how to correctly handle auth_alg=$CUR{auth_alg} in SSID $SSID"; }
+		else { $AllowedAuthAlgos = sprintf "%02x", $AllowedAuthAlgos; }
 	};
 
 	#my $AllowedGroupCiphers = '0f'; # 001111 = wep+tkip+aes
