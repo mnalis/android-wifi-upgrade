@@ -145,7 +145,7 @@ sub add_xml() {
 	}
 
 	$SSID = quote_xml $SSID;
-	my $ConfigKey = "${SSID}$key_mgmt"; 
+	my $ConfigKey = "${SSID}-$key_mgmt";
 	my $priority = $CUR{priority} || 0;
 	
 	# output main config block with all variables filled-in
