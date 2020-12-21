@@ -1,10 +1,25 @@
+# Makefile for android-wifi-upgrade project to automate
+# its typical tasks and selftest
+
+### Default target is first
+all: WifiConfigStore.xml
+
+check: check-syntax check-sample-data
+
 convert_wifi_SCRIPT = convert_wifi.pl
 
 # TODO: Guess via path to this Makefile
 src_dir = .
 
-check: check-syntax check-sample-data
+### The practical use-case
+wpa_supplicant.conf:
+	@if [ ! -s "$@" ]; then echo "Please download $@ from your old Android system and place here" >&2 ; exit 1; fi
 
+WifiConfigStore.xml: wpa_supplicant.conf $(src_dir)/$(convert_wifi_SCRIPT)
+	$(src_dir)/$(convert_wifi_SCRIPT) < $< > $@
+	@echo "Converted without major errors. Please see README.md about uploading $@ to your new phone." >&2
+
+### Self-tests of the script
 check-syntax: $(src_dir)/$(convert_wifi_SCRIPT)
 	perl -c $<
 
@@ -16,7 +31,7 @@ selftest-rw/WifiConfigStore.xml: selftest-ro/wpa_supplicant.conf $(src_dir)/$(co
 # .XML extract from a real Android 10 phone) and are not really founded
 # in any lines from the older .CONF equivalent.
 check-sample-data: selftest-ro/WifiConfigStore.xml selftest-rw/WifiConfigStore.xml
-	diff -bu $^ \
+	@diff -bu $^ \
 	| grep -E -v 'name="(CreationTime|LastConnectUid|ValidatedInternetAccess|HasEverConnected|HiddenSSID|ConnectChoiceTimeStamp|ConnectChoice)"' \
 	| grep -E -v 'name="(staId|ShareThisAp)"' \
 	| grep -E -v '(MacAddressMap|name="MacMapEntry")' \
