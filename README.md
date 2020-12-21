@@ -51,15 +51,16 @@ adb reboot
 
 * set uid to 1000 or 0 ? or -1 ?
 
-** there are UIDs in "CreatorUid", "LastUpdateUid", "LastConnectUid",
-   "CreatorName" => "android.uid.system:1000",
-   "LastUpdateName" => "android.uid.system:1000"...
-   are they all same or may be different?
+    * there are UIDs in "CreatorUid", "LastUpdateUid", "LastConnectUid",
+      "CreatorName" => "android.uid.system:1000",
+      "LastUpdateName" => "android.uid.system:1000"...
+      are they all same or may be different?
 
 * parse id_str (url_decode, JSON) for creatorUid & configKey ?
 
 * where to put "priority" and "bssid" from wpa_supplicant.conf ?
-** possibly, bssid maps to DefaultGwMacAddress ?
+
+    * possibly, bssid maps to DefaultGwMacAddress ?
 
 * wpa_supplicant.conf: is "disabled" always "1" ?
 
