@@ -67,7 +67,7 @@ sub add_xml() {
 	# https://developer.android.com/reference/android/net/wifi/WifiConfiguration#SECURITY_TYPE_WAPI_PSK
 	# Values below are BitSet's = arrays of booleans at numbered bit positions:
 
-	my $AllowedKeyMgmt = '01';
+	my $AllowedKeyMgmt = '01'; # NONE
 	# https://developer.android.com/reference/android/net/wifi/WifiConfiguration.KeyMgmt
 	#   0 NONE - WPA is not used; plaintext or static WEP could be used.
 	#   1 WPA_PSK - WPA pre-shared key (requires preSharedKey to be specified).
@@ -77,20 +77,22 @@ sub add_xml() {
 	#   9 OWE - Opportunististic Wireless Encryption
 	#   10 SUITE_B_192
 
-	my $AllowedProtocols = '03';
+	#my $AllowedProtocols = '03'; # WPA1+WPA2
+	my $AllowedProtocols = '0b'; # WPA1+WPA2+WAPI
 	# https://developer.android.com/reference/android/net/wifi/WifiConfiguration.Protocol
 	#   0 WPA1 (deprecated)
 	#   1 RSN WPA2/WPA3/IEEE 802.11i
 	#   3 WAPI
 
-	my $AllowedAuthAlgos = '01';
+	my $AllowedAuthAlgos = '01'; # open
 	# https://developer.android.com/reference/android/net/wifi/WifiConfiguration.AuthAlgorithm
 	#   0 OPEN - Open System authentication (required for WPA/WPA2)
 	#   1 SHARED - Shared Key authentication (requires static WEP keys)
 	#   2 LEAP/Network EAP (only used with LEAP)
 	#   3 SAE (Used only for WPA3-Personal)
 
-	my $AllowedGroupCiphers = '0f';
+	#my $AllowedGroupCiphers = '0f'; # 001111 = wep+tkip+aes
+	my $AllowedGroupCiphers = '2f'; # 101111 = wep+tkip+aes+aes
 	# https://developer.android.com/reference/android/net/wifi/WifiConfiguration.GroupCipher
 	#   0 WEP40 = WEP (Wired Equivalent Privacy) with 40-bit key (original 802.11)
 	#   1 WEP104 = WEP (Wired Equivalent Privacy) with 104-bit key
@@ -99,7 +101,8 @@ sub add_xml() {
 	#   5 GCMP_256 = AES in Galois/Counter Mode
 	#   6 SMS4 = SMS4 cipher for WAPI
 
-	my $AllowedPairwiseCiphers = '06';
+	#my $AllowedPairwiseCiphers = '06'; # TKIP(2)/AES(4)
+	my $AllowedPairwiseCiphers = '0e'; # TKIP(2)/AES(4)/AES(8)
 	# https://developer.android.com/reference/android/net/wifi/WifiConfiguration.PairwiseCipher
 	#   0 NONE - Use only Group keys (deprecated)
 	#   1 TKIP (WPA1) - deprecated
