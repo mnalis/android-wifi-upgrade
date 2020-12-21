@@ -1,5 +1,6 @@
 # Makefile for android-wifi-upgrade project to automate
 # its typical tasks and selftest
+# Copyright (C) 2020 by Jim Klimov <jimklimov@gmail.com>
 
 ### Default target is first
 all: WifiConfigStore.xml

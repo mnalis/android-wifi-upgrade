@@ -1,5 +1,6 @@
 #!/usr/bin/perl
 # by Matija Nalis <mnalis-perl@voyager.hr>, Apache 2.0 license, started 2019-12-02
+# Portions copyright (C) 2020 by Jim Klimov <jimklimov@gmail.com>
 #
 # converts android WiFi passwords from old wpa_supplicant.conf to newer WifiConfigStore.xml
 #
