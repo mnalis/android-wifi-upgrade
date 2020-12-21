@@ -59,8 +59,6 @@ sub add_xml() {
 	if ($IGNORE_OPEN and $key_mgmt eq 'NONE') { return };
 	#return if $DEBUG > 0 and $cnt++ < 49;	# FIXME DELME debug why it doesn't work will all 74 networks?
 
-	if (defined $CUR{auth_alg}) { warn "probably don't know how to correctly handle auth_alg=$CUR{auth_alg} in SSID $SSID" };
-
 	my $CreationTime = strftime "time=%m-%d %H:%M:%S.000", localtime;	# FIXME example: time=12-02 01:47:38.625 -- year is lost??
 
 	my $PSK_LINE = '<null name="PreSharedKey" />';
@@ -90,6 +88,9 @@ sub add_xml() {
 	#   1 SHARED - Shared Key authentication (requires static WEP keys)
 	#   2 LEAP/Network EAP (only used with LEAP)
 	#   3 SAE (Used only for WPA3-Personal)
+	if (defined $CUR{auth_alg}) {
+		warn "probably don't know how to correctly handle auth_alg=$CUR{auth_alg} in SSID $SSID"
+	};
 
 	#my $AllowedGroupCiphers = '0f'; # 001111 = wep+tkip+aes
 	my $AllowedGroupCiphers = '2f'; # 101111 = wep+tkip+aes+aes
