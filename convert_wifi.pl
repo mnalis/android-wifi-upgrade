@@ -71,7 +71,19 @@ sub add_xml() {
 		$AllowedKeyMgmt = '02';
 		$PSK_LINE = '<string name="PreSharedKey">' . $PreSharedKey . '</string>';
 	}
-	
+
+	my $WEP_LINE = '<null name="WEPKeys" />';
+	if (defined $CUR{wep_key0} || defined $CUR{wep_key1} || defined $CUR{wep_key2} || defined $CUR{wep_key3}) {
+		$WEP_LINE = '<string-array name="WEPKeys" num="4">' . "\n";
+		if (defined $CUR{wep_key0}) { $WEP_LINE .= '<item value="' . quote_xml ($CUR{wep_key0}) . '" />' . "\n"; } else { $WEP_LINE .= '<item value="" />' . "\n"; }
+		if (defined $CUR{wep_key1}) { $WEP_LINE .= '<item value="' . quote_xml ($CUR{wep_key1}) . '" />' . "\n"; } else { $WEP_LINE .= '<item value="" />' . "\n"; }
+		if (defined $CUR{wep_key2}) { $WEP_LINE .= '<item value="' . quote_xml ($CUR{wep_key2}) . '" />' . "\n"; } else { $WEP_LINE .= '<item value="" />' . "\n"; }
+		if (defined $CUR{wep_key3}) { $WEP_LINE .= '<item value="' . quote_xml ($CUR{wep_key3}) . '" />' . "\n"; } else { $WEP_LINE .= '<item value="" />' . "\n"; }
+		$WEP_LINE .= '</string-array>';
+
+		if ($key_mgmt eq 'NONE') { $key_mgmt = 'WEP'; } # For the ConfigKey below to be meaningful
+	}
+
 	$SSID = quote_xml $SSID;
 	my $ConfigKey = "${SSID}$key_mgmt"; 
 	my $priority = $CUR{priority} || 0;
@@ -83,7 +95,7 @@ sub add_xml() {
 <string name="SSID">$SSID</string>
 <null name="BSSID" />
 $PSK_LINE
-<null name="WEPKeys" />
+$WEP_LINE
 <int name="WEPTxKeyIndex" value="0" />
 <boolean name="HiddenSSID" value="false" />
 <boolean name="RequirePMF" value="false" />
