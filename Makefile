@@ -1,6 +1,8 @@
 # Makefile for android-wifi-upgrade project to automate
 # its typical tasks and selftest
+#
 # Copyright (C) 2020 by Jim Klimov <jimklimov@gmail.com>
+# released under Apache 2.0 license (see LICENSE file).
 
 ### Default target is first
 all: WifiConfigStore.xml
