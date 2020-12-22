@@ -11,7 +11,7 @@ in all my wifi password being lost. The reason is the information is no longer k
 This script is a quick hack to convert (most of the) passwords to new format
 so I don't have to remember and type them all again.
 
-All of the project is released under Apache 2.0 license (see LICENSE) file.
+All of the project is released under Apache 2.0 license (see LICENSE file).
 
 ## Usage
 
