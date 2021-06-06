@@ -4,7 +4,7 @@
 <NetworkList>
 <Network>
 <WifiConfiguration>
-<string name="ConfigKey">&quot;myhome-wpa&quot;-WPA_PSK</string>
+<string name="ConfigKey">&quot;myhome-wpa&quot;WPA_PSK</string>
 <string name="SSID">&quot;myhome-wpa&quot;</string>
 <null name="BSSID" />
 <boolean name="ShareThisAp" value="false" />
@@ -15,7 +15,7 @@
 <boolean name="HiddenSSID" value="false" />
 <boolean name="RequirePMF" value="false" />
 <byte-array name="AllowedKeyMgmt" num="1">02</byte-array>
-<byte-array name="AllowedProtocols" num="1">0b</byte-array>
+<byte-array name="AllowedProtocols" num="1">03</byte-array>
 <byte-array name="AllowedAuthAlgos" num="1">01</byte-array>
 <byte-array name="AllowedGroupCiphers" num="1">2f</byte-array>
 <byte-array name="AllowedPairwiseCiphers" num="1">0e</byte-array>
@@ -52,7 +52,7 @@
 <NetworkStatus>
 <string name="SelectionStatus">NETWORK_SELECTION_ENABLED</string>
 <string name="DisableReason">NETWORK_SELECTION_ENABLE</string>
-<string name="ConnectChoice">&quot;myhome-wep&quot;-WEP</string>
+<string name="ConnectChoice">&quot;myhome-wep&quot;WEP</string>
 <long name="ConnectChoiceTimeStamp" value="1608473808432" />
 <boolean name="HasEverConnected" value="true" />
 </NetworkStatus>
@@ -63,7 +63,7 @@
 </Network>
 <Network>
 <WifiConfiguration>
-<string name="ConfigKey">&quot;myhome-wep&quot;-WEP</string>
+<string name="ConfigKey">&quot;myhome-wep&quot;WEP</string>
 <string name="SSID">&quot;myhome-wep&quot;</string>
 <null name="BSSID" />
 <boolean name="ShareThisAp" value="false" />
@@ -79,7 +79,7 @@
 <boolean name="HiddenSSID" value="true" />
 <boolean name="RequirePMF" value="false" />
 <byte-array name="AllowedKeyMgmt" num="1">01</byte-array>
-<byte-array name="AllowedProtocols" num="1">0b</byte-array>
+<byte-array name="AllowedProtocols" num="1">03</byte-array>
 <byte-array name="AllowedAuthAlgos" num="1">03</byte-array>
 <byte-array name="AllowedGroupCiphers" num="1">2f</byte-array>
 <byte-array name="AllowedPairwiseCiphers" num="1">0e</byte-array>
@@ -127,7 +127,7 @@
 </Network>
 <Network>
 <WifiConfiguration>
-<string name="ConfigKey">&quot;OpenNet&quot;-NONE</string>
+<string name="ConfigKey">&quot;OpenNet&quot;NONE</string>
 <string name="SSID">&quot;OpenNet&quot;</string>
 <null name="BSSID" />
 <boolean name="ShareThisAp" value="false" />
@@ -138,7 +138,7 @@
 <boolean name="HiddenSSID" value="false" />
 <boolean name="RequirePMF" value="false" />
 <byte-array name="AllowedKeyMgmt" num="1">01</byte-array>
-<byte-array name="AllowedProtocols" num="1">0b</byte-array>
+<byte-array name="AllowedProtocols" num="1">03</byte-array>
 <byte-array name="AllowedAuthAlgos" num="1">01</byte-array>
 <byte-array name="AllowedGroupCiphers" num="1">2f</byte-array>
 <byte-array name="AllowedPairwiseCiphers" num="1">0e</byte-array>
@@ -186,7 +186,7 @@
 </Network>
 <Network>
 <WifiConfiguration>
-<string name="ConfigKey">&quot;YICarCam&quot;-WPA_PSK</string>
+<string name="ConfigKey">&quot;YICarCam&quot;WPA_PSK</string>
 <string name="SSID">&quot;YICarCam&quot;</string>
 <null name="BSSID" />
 <string name="PreSharedKey">&quot;CamPass&quot;</string>
@@ -195,7 +195,7 @@
 <boolean name="HiddenSSID" value="false" />
 <boolean name="RequirePMF" value="false" />
 <byte-array name="AllowedKeyMgmt" num="1">02</byte-array>
-<byte-array name="AllowedProtocols" num="1">0b</byte-array>
+<byte-array name="AllowedProtocols" num="1">03</byte-array>
 <byte-array name="AllowedAuthAlgos" num="1">01</byte-array>
 <byte-array name="AllowedGroupCiphers" num="1">2f</byte-array>
 <byte-array name="AllowedPairwiseCiphers" num="1">0e</byte-array>

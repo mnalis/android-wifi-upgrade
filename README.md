@@ -78,6 +78,7 @@ adb reboot
 * warn for all unhandled key/value pairs (or even better, handle them correctly)
 
 * add options to select 'WAPI' (`$AllowedProtocols`) and `$ConfigKey`
-  formats, instead of using different git branches
+  formats, instead of using different git branches (need to fix `make check`
+  too then)
 
 * FIXMEs in code
