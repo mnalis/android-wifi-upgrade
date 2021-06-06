@@ -77,8 +77,8 @@ sub add_xml() {
 	#   9 OWE - Opportunististic Wireless Encryption
 	#   10 SUITE_B_192
 
-	#my $AllowedProtocols = '03'; # WPA1+WPA2
-	my $AllowedProtocols = '0b'; # WPA1+WPA2+WAPI
+	my $AllowedProtocols = '03'; # WPA1+WPA2
+	#my $AllowedProtocols = '0b'; # WPA1+WPA2+WAPI - FIXME integrate as script option?
 	# https://developer.android.com/reference/android/net/wifi/WifiConfiguration.Protocol
 	#   0 WPA1 (deprecated)
 	#   1 RSN WPA2/WPA3/IEEE 802.11i
@@ -147,7 +147,8 @@ sub add_xml() {
 	}
 
 	$SSID = quote_xml $SSID;
-	my $ConfigKey = "${SSID}-$key_mgmt";
+	#my $ConfigKey = "${SSID}-$key_mgmt";	# FIXME integrate version with '-' as script option
+	my $ConfigKey = "${SSID}$key_mgmt";
 	my $priority = $CUR{priority} || 0;
 	
 	# output main config block with all variables filled-in
