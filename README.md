@@ -40,6 +40,8 @@ adb reboot
 
 * enable WiFi on your phone
 
+## Troubleshooting
+* if all else fails, please report new issue at https://github.com/mnalis/android-wifi-upgrade/issues
 
 ## TODO
 * Never write XML by hand as I do here!  It will seem to work in most cases,
