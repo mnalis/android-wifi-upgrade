@@ -38,6 +38,8 @@ adb shell rm /data/misc/wifi/WifiConfigStore.xml.encrypted-checksum
 adb reboot
 ```
 
+Note that location of *WifiConfigStore.xml* on your device might be something other than */data/misc/wifi* (like */data/misc/apexdata/com.android.wifi*), so you need to verify that first (and update the commands above accordingly).
+
 * enable WiFi on your phone
 
 ## Troubleshooting
