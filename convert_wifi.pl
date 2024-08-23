@@ -54,8 +54,14 @@ sub add_xml() {
 	if (!defined $SSID) { return warn "Skipping - no SSID?! in " . Dumper(\%CUR) };
 	#if ($SSID !~ /^[a-zA-Z0-9_ \-\"\'\.<>&()@]+$/) { warn "Possibly problematic SSID name $SSID (FIXME needs escaping?)" };
 
-	my $key_mgmt = $CUR{key_mgmt} || ''; warn "no key_mgmt for SSID $SSID" if not defined $CUR{key_mgmt};
-	if ($CUR{key_mgmt} !~ /^NONE|WPA-PSK$/) { return warn "Skipping network with unknown key_mgmt=$key_mgmt for SSID $SSID" };
+	my $key_mgmt = $CUR{key_mgmt} || 'WPA-PSK'; warn "no key_mgmt for SSID $SSID; trying to continue, but it might not work" if not defined $CUR{key_mgmt};
+	if ($key_mgmt ne 'NONE') {
+		if ($key_mgmt =~ /\b(WPA-PSK\S*)\b/) {
+			$key_mgmt = $1;  # line can be e.g. "key_mgmt=WPA-PSK FT-PSK WPA-PSK-SHA256", so if it has WPA-PSK, assume that
+		} else {
+			return warn "Skipping network with unknown key_mgmt=$key_mgmt for SSID $SSID"
+		};
+	}
 	$key_mgmt =~ tr/-/_/;
 
 	if ($IGNORE_OPEN and $key_mgmt eq 'NONE') { return };
