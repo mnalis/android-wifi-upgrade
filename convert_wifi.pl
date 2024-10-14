@@ -159,55 +159,66 @@ sub add_xml() {
 	
 	# output main config block with all variables filled-in
 	print qq{<Network>
-<WifiConfiguration>
-<string name="ConfigKey">$ConfigKey</string>
-<string name="SSID">$SSID</string>
-<string name="BSSID">any</string>
-$PSK_LINE
-$WEP_LINE
-<int name="WEPTxKeyIndex" value="0" />
-<boolean name="HiddenSSID" value="false" />
-<boolean name="RequirePMF" value="false" />
-<byte-array name="AllowedKeyMgmt" num="1">$AllowedKeyMgmt</byte-array>
-<byte-array name="AllowedProtocols" num="1">$AllowedProtocols</byte-array>
-<byte-array name="AllowedAuthAlgos" num="1">$AllowedAuthAlgos</byte-array>
-<byte-array name="AllowedGroupCiphers" num="1">$AllowedGroupCiphers</byte-array>
-<byte-array name="AllowedPairwiseCiphers" num="1">$AllowedPairwiseCiphers</byte-array>
-<byte-array name="AllowedGroupMgmtCiphers" num="0">$AllowedGroupMgmtCiphers</byte-array>
-<byte-array name="AllowedSuiteBCiphers" num="1">$AllowedSuiteBCiphers</byte-array>
-<boolean name="Shared" value="true" />
-<int name="Status" value="2" />
-<null name="FQDN" />
-<null name="ProviderFriendlyName" />
-<null name="LinkedNetworksList" />
-<null name="DefaultGwMacAddress" />
-<boolean name="ValidatedInternetAccess" value="false" />
-<boolean name="NoInternetAccessExpected" value="false" />
-<int name="UserApproved" value="0" />
-<boolean name="MeteredHint" value="false" />
-<int name="MeteredOverride" value="0" />
-<boolean name="UseExternalScores" value="false" />
-<int name="NumAssociation" value="$priority" />
-<int name="CreatorUid" value="$CreationUID" />
-<string name="CreatorName">android.uid.system:$CreationUID</string>
-<string name="CreationTime">$CreationTime</string>
-<int name="LastUpdateUid" value="$CreationUID" />
-<string name="LastUpdateName">android.uid.system:$CreationUID</string>
-<int name="LastConnectUid" value="0" />
-<boolean name="IsLegacyPasspointConfig" value="false" />
-<long-array name="RoamingConsortiumOIs" num="0" />
-</WifiConfiguration>
-<NetworkStatus>
-<string name="SelectionStatus">NETWORK_SELECTION_ENABLED</string>
-<string name="DisableReason">NETWORK_SELECTION_ENABLE</string>
-<null name="ConnectChoice" />
-<long name="ConnectChoiceTimeStamp" value="-1" />
-<boolean name="HasEverConnected" value="false" />
-</NetworkStatus>
-<IpConfiguration>
-<string name="IpAssignment">DHCP</string>
-<string name="ProxySettings">NONE</string>
-</IpConfiguration>
+ <WifiConfiguration>
+  <string name="ConfigKey">$ConfigKey</string>
+  <boolean name="ShareThisAp" value="false" />
+  <int name="staId" value="0" />
+  <string name="SSID">$SSID</string>
+  $PSK_LINE
+  $WEP_LINE
+  <int name="WEPTxKeyIndex" value="0" />
+  <boolean name="HiddenSSID" value="false" />
+  <boolean name="RequirePMF" value="false" />
+  <byte-array name="AllowedKeyMgmt" num="1">02</byte-array>
+  <byte-array name="AllowedProtocols" num="1">0b</byte-array>
+  <byte-array name="AllowedAuthAlgos" num="1">01</byte-array>
+  <byte-array name="AllowedGroupCiphers" num="1">2f</byte-array>
+  <byte-array name="AllowedPairwiseCiphers" num="1">0e</byte-array>
+  <byte-array name="AllowedGroupMgmtCiphers" num="1">04</byte-array>
+  <byte-array name="AllowedSuiteBCiphers" num="1">01</byte-array>
+  <boolean name="Shared" value="true" />
+  <boolean name="AutoJoinEnabled" value="true" />
+  <boolean name="Trusted" value="true" />
+  <string name="BSSID">any</string>
+  <int name="Status" value="2" />
+  <null name="FQDN" />
+  <null name="ProviderFriendlyName" />
+  <null name="LinkedNetworksList" />
+  <null name="DefaultGwMacAddress" />
+  <boolean name="ValidatedInternetAccess" value="true" />
+  <boolean name="NoInternetAccessExpected" value="false" />
+  <boolean name="MeteredHint" value="false" />
+  <int name="MeteredOverride" value="0" />
+  <boolean name="UseExternalScores" value="false" />
+  <int name="CreatorUid" value="1000" />
+  <string name="CreatorName">android.uid.system:1000</string>
+  <int name="LastUpdateUid" value="1000" />
+  <string name="LastUpdateName">android.uid.system:1000</string>
+  <int name="LastConnectUid" value="1000" />
+  <boolean name="IsLegacyPasspointConfig" value="false" />
+  <long-array name="RoamingConsortiumOIs" num="0" />
+  <string name="RandomizedMacAddress">4e:35:54:2d:31:db</string>
+  <int name="MacRandomizationSetting" value="1" />
+  <int name="CarrierId" value="-1" />
+  <boolean name="IsMostRecentlyConnected" value="true" />
+  <null name="DppConnector" />
+  <null name="DppNetAccessKey" />
+  <int name="DppNetAccessKeyExpiry" value="-1" />
+  <null name="DppCsign" />
+  <string name="OCloudGlobalId">NULL</string>
+  <long name="LastConnectedMillIs" value="1724435944568" />
+  <boolean name="EverLoginSuccess" value="true" />
+ </WifiConfiguration>
+ <NetworkStatus>
+  <string name="SelectionStatus">NETWORK_SELECTION_ENABLED</string>
+  <string name="DisableReason">NETWORK_SELECTION_ENABLE</string>
+  <null name="ConnectChoice" />
+  <boolean name="HasEverConnected" value="true" />
+ </NetworkStatus>
+ <IpConfiguration>
+  <string name="IpAssignment">DHCP</string>
+  <string name="ProxySettings">NONE</string>
+ </IpConfiguration>
 </Network>
 };
 	
