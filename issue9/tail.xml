@@ -1,0 +1,8 @@
+</NetworkList>
+<MacAddressMap>
+<map name="MacMapEntry" />
+</MacAddressMap>
+<PasspointConfigData>
+<long name="ProviderIndex" value="0" />
+</PasspointConfigData>
+</WifiConfigStoreData>

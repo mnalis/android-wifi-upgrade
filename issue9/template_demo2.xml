@@ -1,0 +1,59 @@
+<Network>
+ <WifiConfiguration>
+  <string name="ConfigKey">&quot;%SSID%&quot;WPA_PSK</string>
+  <string name="SSID">&quot;%SSID%&quot;</string>
+  <null name="BSSID" />
+  <boolean name="ShareThisAp" value="false" />
+  <int name="staId" value="0" />
+  <string name="PreSharedKey">&quot;________&quot;</string>
+  <null name="WEPKeys" />
+  <int name="WEPTxKeyIndex" value="0" />
+  <boolean name="HiddenSSID" value="false" />
+  <boolean name="RequirePMF" value="false" />
+  <byte-array name="AllowedKeyMgmt" num="1">02</byte-array>
+  <byte-array name="AllowedProtocols" num="1">03</byte-array>
+  <byte-array name="AllowedAuthAlgos" num="1">01</byte-array>
+  <byte-array name="AllowedGroupCiphers" num="1">2f</byte-array>
+  <byte-array name="AllowedPairwiseCiphers" num="1">0e</byte-array>
+  <byte-array name="AllowedGroupMgmtCiphers" num="0"></byte-array>
+  <byte-array name="AllowedSuiteBCiphers" num="1">01</byte-array>
+  <boolean name="Shared" value="true" />
+  <int name="Status" value="2" />
+  <null name="FQDN" />
+  <null name="ProviderFriendlyName" />
+  <null name="LinkedNetworksList" />
+  <null name="DefaultGwMacAddress" />
+  <boolean name="ValidatedInternetAccess" value="true" />
+  <boolean name="NoInternetAccessExpected" value="false" />
+  <int name="UserApproved" value="0" />
+  <boolean name="MeteredHint" value="false" />
+  <int name="MeteredOverride" value="0" />
+  <boolean name="UseExternalScores" value="false" />
+  <int name="NumAssociation" value="0" />
+  <int name="CreatorUid" value="1000" />
+  <string name="CreatorName">android.uid.system:1000</string>
+  <string name="CreationTime">time=11-06 18:12:05.803</string>
+  <int name="LastUpdateUid" value="1000" />
+  <string name="LastUpdateName">android.uid.system:1000</string>
+  <int name="LastConnectUid" value="1000" />
+  <boolean name="IsLegacyPasspointConfig" value="false" />
+  <long-array name="RoamingConsortiumOIs" num="0" />
+  <string name="RandomizedMacAddress">b6:5d:82:4f:37:8e</string>
+  <int name="MacRandomizationSetting" value="0" />
+  <null name="DppConnector" />
+  <null name="DppNetAccessKey" />
+  <int name="DppNetAccessKeyExpiry" value="-1" />
+  <null name="DppCsign" />
+ </WifiConfiguration>
+ <NetworkStatus>
+  <string name="SelectionStatus">NETWORK_SELECTION_ENABLED</string>
+  <string name="DisableReason">NETWORK_SELECTION_ENABLE</string>
+  <string name="ConnectChoice">&quot;myhome-wep&quot;WEP</string>
+  <long name="ConnectChoiceTimeStamp" value="1608473808432" />
+  <boolean name="HasEverConnected" value="true" />
+ </NetworkStatus>
+ <IpConfiguration>
+  <string name="IpAssignment">DHCP</string>
+  <string name="ProxySettings">NONE</string>
+ </IpConfiguration>
+</Network>
