@@ -162,7 +162,7 @@ sub add_xml() {
 <WifiConfiguration>
 <string name="ConfigKey">$ConfigKey</string>
 <string name="SSID">$SSID</string>
-<null name="BSSID" />
+<string name="BSSID">any</string>
 $PSK_LINE
 $WEP_LINE
 <int name="WEPTxKeyIndex" value="0" />
